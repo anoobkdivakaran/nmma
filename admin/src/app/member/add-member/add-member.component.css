@@ -1,0 +1,7 @@
+.form-check .form-check-lbl {
+    min-height: 18px;
+    display: block;
+    margin-left: 1.25rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}

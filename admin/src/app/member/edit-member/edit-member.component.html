@@ -1,0 +1,151 @@
+
+<div class="container-fluid page-body-wrapper">
+  <app-header></app-header>
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="row">
+        <div class="col-12 grid-margin">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">New Member</h4>
+              <form [formGroup]="memberForm" (ngSubmit)="submitMemberData()" novalidate>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label">Name</label>
+                      <div class="col-sm-8">
+                        <input type="text" formControlName="firstName" placeholder="Enter full name" class="form-control" required />
+                        <!-- errors-->
+                        <p *ngIf="firstName?.touched && firstName?.invalid" class="error">
+                          <sup>*</sup>Please enter atleast  name
+                        </p>
+                        <p *ngIf="firstName?.errors?.['minlength']" class="error">
+                          <sup>*</sup>Name shouldn't be less than 2 words
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                 
+                </div>
+                                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label">E-Mail </label>
+                      <div class="col-sm-8">
+                        <input type="email" formControlName="email" class="form-control" required />
+                        <!-- errors-->
+                        <p *ngIf="email?.touched && email?.invalid" class="error">
+                          <sup>*</sup>Please provide email
+                        </p>
+                        <p *ngIf="email?.errors?.['pattern']" class="error">
+                          <sup>*</sup>Please enter correct email
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label">Mobile # </label>
+                      <div class="col-sm-8">
+                        <input type="text" formControlName="mobileNumber" class="form-control" required />
+                        <!-- errors-->
+                        <p *ngIf="mobileNumber?.touched && mobileNumber?.invalid" class="error">
+                          <sup>*</sup>Please provide contact number
+                        </p>
+                        <p *ngIf="mobileNumber?.errors?.['pattern']" class="error">
+                          <sup>*</sup>Use numbers only number
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label">Address </label>
+                      <div class="col-sm-8">
+                        <textarea class="form-control" formControlName="address" required placeholder="Enter your address"></textarea> 
+                        <!-- errors-->
+                        <p *ngIf="address?.touched && address?.invalid" class="error">
+                          <sup>*</sup>Please enter the address
+                        </p>
+                        <p *ngIf="address?.errors?.['minlength']" class="error">
+                          <sup>*</sup>Address shouldn't be less than 5 words
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                  <div class="form-group row">                 
+                    <div class="col-md-8 offset-md-4">
+                      <div class="form-check">
+                        <label class="form-check-lbl">
+                          <input type="checkbox" class="form-check-input" formControlName="isDependent" >
+                          Do you have any dependents ?
+                        </label>
+                      </div>
+                    </div>                 
+                  </div>
+                  </div>
+                 
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label">Membership</label>
+                      <div class="col-sm-8">
+                        <select class="form-control" formControlName="membership" (change)="memberShipChanged($event)">
+                          <option value="free">Free</option>
+                          <option value="onetime">One time</option>
+                          <option value="yearly" selected>Yearly</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">Expiry On</label>
+                      <div class="col-sm-9">
+                        <input type="date" formControlName="expiryOn" class="form-control" />
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                  <div class="form-group row">                 
+                    <div class="col-md-8 offset-md-4">
+                      <div class="form-check">
+                        <label class="form-check-lbl">
+                          <input type="checkbox" class="form-check-input" formControlName="isActive">
+                          Is Active
+                        </label>
+                      </div>
+                    </div>                 
+                  </div>
+                  </div>
+                 
+                </div>
+
+                <div class="card-footer text-center">
+                  <button type="submit" type="submit" [disabled]="!memberForm.valid"
+                    class="btn btn-primary mr-2">Submit</button>
+                  <a type="button" href="members" class="btn btn-light">Cancel</a>
+                </div>
+              </form>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- content-wrapper ends -->
+    <!-- partial:assets/partials/_footer.html -->
+    <app-footer></app-footer>
+    <!-- partial -->
+  </div>
+</div>
