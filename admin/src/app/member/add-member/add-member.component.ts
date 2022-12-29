@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { CrudService } from 'src/app/shared/member-crud.service';
+import { CrudServiceMember } from 'src/app/shared/service/member-crud.service';
 
 
 @Component({
@@ -14,7 +14,7 @@ import { CrudService } from 'src/app/shared/member-crud.service';
 export class AddMemberComponent implements OnInit {
   public memberForm: FormGroup;
   constructor(
-    public crudApi: CrudService,
+    public crudApiMember: CrudServiceMember,
     public fb: FormBuilder,
     public toastr: ToastrService,
     
@@ -22,7 +22,7 @@ export class AddMemberComponent implements OnInit {
   }
   public now = new Date();
   ngOnInit() {
-    this.crudApi.GetMembersList();
+    this.crudApiMember.GetMembersList();
     this.Form();
     this.memberShipChanged('yearly');
   }
@@ -66,8 +66,7 @@ export class AddMemberComponent implements OnInit {
   }
 
   submitMemberData() {
-    debugger
-    this.crudApi.AddMember(this.memberForm.value);
+    this.crudApiMember.AddMember(this.memberForm.value);
     this.toastr.success(
       this.memberForm.controls['firstName'].value + ' successfully added!'
     );

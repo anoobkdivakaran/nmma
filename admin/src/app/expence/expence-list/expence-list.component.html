@@ -1,0 +1,54 @@
+<div class="container-fluid page-body-wrapper">
+    <app-header></app-header>
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <div class="row">
+          <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <p class="card-title">Expence List</p>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="table-responsive">
+                      <table id="memberlist" class="display expandable-table" style="width:100%">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Member Name</th>
+                            <th>Date</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr
+                            *ngFor="let expence of expence| paginate: { itemsPerPage: pagerowcount, currentPage: page };let i = index;">
+                            <th>{{((page-1)*pagerowcount) + (i+1)}}</th>
+                            <td *ngIf="expence.expenceType =='Expense'" style="color: red;">{{ expence.expenceType }}</td>
+                            <td *ngIf="expence.expenceType =='Income'" style="color: green;">{{ expence.expenceType }}</td>
+                            <td>{{ expence.amount| currency }}</td>
+                            <td>{{ expence.amount }}</td>
+                            <td>{{ expence.createdOn| date:"MM-dd-yyyy" }}</td>
+                            <td class="text-center action-block">
+                              <span class="mr-2 btn btn-outline-primary btn-sm"
+                                routerLink="/editexpence/{{ expence.$key }}">Edit</span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <pagination-controls class="my-pagination"  (pageChange)="page = $event"></pagination-controls>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+      <!-- partial:partials/_footer.html -->
+      <app-footer></app-footer>
+      <!-- partial -->
+    </div>
+  </div>

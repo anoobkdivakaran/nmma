@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { User } from './user';
+import { User } from '../interface/user';
 import * as auth from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {
@@ -18,8 +18,7 @@ export class AuthService {
     public router: Router,
     public ngZone: NgZone // NgZone service to remove outside scope warning
   ) {
-    /* Saving user data in localstorage when 
-    logged in and setting up null when logged out */
+
     this.afAuth.authState.subscribe((user) => {
       if (user) {
         this.userData = user;
@@ -33,7 +32,6 @@ export class AuthService {
   }
   // Sign in with email/password
   SignIn(email: string, password: string) {
-    debugger
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
@@ -83,7 +81,6 @@ export class AuthService {
   }
   // Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
-    debugger
     const user = JSON.parse(localStorage.getItem('user')!);
     return user !== null //&& user.emailVerified !== false ? true : false;
   }
@@ -122,6 +119,7 @@ export class AuthService {
     return userRef.set(userData, {
       merge: true,
     });
+
   }
   // Sign out
   SignOut() {

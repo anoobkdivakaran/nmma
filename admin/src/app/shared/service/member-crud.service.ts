@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Member } from '../shared/member';
+import { Member } from '../interface/member';
 import {
   AngularFireDatabase,
   AngularFireList,
@@ -8,7 +8,7 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class CrudService {
+export class CrudServiceMember {
   membersRef: AngularFireList<any>;
   memberRef: AngularFireObject<any>;
   constructor(private db: AngularFireDatabase) {}

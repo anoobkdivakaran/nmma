@@ -1,0 +1,92 @@
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <app-header></app-header>
+  <div class="main-panel">        
+    <div class="content-wrapper">
+      <div class="row">
+        <div class="col-12 grid-margin">
+          <form [formGroup]="expenceForm" (ngSubmit)="submitExpenceData()" novalidate>
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Expense Manager</h4>
+
+                <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">Expense Type</label>
+                        <div class="col-sm-8">
+                          <select class="form-control" formControlName="expenceType">
+                            <option value="">Select Expense Type</option>
+                            <option value="Income">Income</option>
+                            <option value="Expense">Expense</option>
+                          </select>
+                          <p *ngIf="expenceType?.touched && expenceType?.invalid" class="error">
+                            <sup>*</sup>Please select expense type
+                          </p>
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">Amount</label>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control"  formControlName="amount"/>
+                          <p *ngIf="amount?.touched && amount?.invalid" class="error">
+                            <sup>*</sup>Please enter amount   </p>
+                          <p *ngIf="amount?.errors?.['min']" class="error">
+                            <sup>*</sup>Amount shouldn't be less than 1                           </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-4 col-form-label">Member List</label>
+                          <div class="col-sm-8">
+                            <select class="form-control" formControlName="memberKey" >
+                              <option *ngFor="let member of memberList" value="{{member['$key']}}">{{member.firstName}}</option>
+                            </select>
+                            <p *ngIf="memberKey?.touched && memberKey?.invalid" class="error">
+                              <sup>*</sup>Please select member name from the list
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+              
+               
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label">Note</label>
+                      <div class="col-sm-8">
+                        <textarea class="form-control" id="exampleTextarea1" formControlName="notes" rows="4" required></textarea>
+                        <p *ngIf="notes?.touched && notes?.invalid" class="error">
+                          <sup>*</sup>Please enter notes
+                        </p>
+                       
+                      </div>
+                    </div>
+                  
+                  </div>
+                </div>
+             
+            </div>
+            <div class="card-footer text-center">
+              <button type="submit" class="btn btn-primary mr-2"  [disabled]="!expenceForm.valid">Submit</button>
+              <button class="btn btn-light" (click)="ResetForm()">Cancel</button>
+            </div>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+    <!-- content-wrapper ends -->
+    <!-- partial:../html/assets/partials/_footer.html -->
+   <app-footer></app-footer>
+    <!-- partial -->
+  </div>
+  <!-- main-panel ends -->
+  </div>

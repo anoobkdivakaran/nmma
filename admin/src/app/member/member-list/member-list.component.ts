@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Member } from 'src/app/shared/member';
-import { CrudService } from 'src/app/shared/member-crud.service';
+import { Member } from 'src/app/shared/interface/member';
+import { CrudServiceMember } from 'src/app/shared/service/member-crud.service';
 
 @Component({
   selector: 'app-member-list',
@@ -13,7 +13,7 @@ export class MemberListComponent implements OnInit {
   Member: Member[]
   preLoader: boolean;
   noData: boolean;
-  constructor(public crudApi: CrudService) {
+  constructor(public crudApi: CrudServiceMember) {
 
   }
 

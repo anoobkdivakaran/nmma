@@ -22,27 +22,38 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { AuthService } from './shared/auth.service';
+import { AuthService } from './shared/auth/auth.service';
+import { AddExpenceComponent } from './expence/add-expence/add-expence.component';
+import { ExpenceListComponent } from './expence/expence-list/expence-list.component';
+import { EditExpenceComponent } from './expence/edit-expence/edit-expence.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignInComponent,
+
     DashboardComponent,
     AddMemberComponent,
     EditMemberComponent,
     MemberListComponent,
+
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+
+    AddExpenceComponent,
+    ExpenceListComponent,
+    EditExpenceComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
+    
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
